@@ -43,7 +43,7 @@ TO_MENU() {
     echo "When would you like your appointment?"
     read SERVICE_TIME
 
-    echo "I have put you down for a ${OPTIONS[$SERVICE_ID_SELECTED]} at $SERVICE_TIME, $CUSTOMER_NAME." <<< $($PSQL "INSERT INTO appointments(customer_id, service_id, time) VALUES('$CUSTOMER_ID', '$SERVICE_ID_SELECTED', '$SERVICE_TIME')")
+    $PSQL "INSERT INTO appointments(customer_id, service_id, time) VALUES('$CUSTOMER_ID', '$SERVICE_ID_SELECTED', '$SERVICE_TIME')" | echo "I have put you down for a ${OPTIONS[$SERVICE_ID_SELECTED]} at $SERVICE_TIME, $CUSTOMER_NAME." 
   fi
 }
 
